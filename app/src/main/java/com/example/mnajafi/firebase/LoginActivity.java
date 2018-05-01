@@ -1,4 +1,6 @@
 package com.example.mnajafi.firebase;
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -23,6 +25,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import static android.R.attr.password;
 import static com.example.mnajafi.firebase.R.id.login_input_layout_email;
 
 public class LoginActivity extends AppCompatActivity {
@@ -34,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private EditText loginInputEmail, loginInputPassword;
     private TextInputLayout loginInputLayoutEmail, loginInputLayoutPassword;
-
+    private ProgressDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +58,8 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                submitForm();
+                callLoginDialog();
+//                submitForm();
             }
         });
 
@@ -120,6 +124,24 @@ public class LoginActivity extends AppCompatActivity {
         loginInputLayoutEmail.setErrorEnabled(false);
         return true;
     }
+
+
+    private void callLoginDialog()
+    {
+        Dialog myDialog = new Dialog(this);
+        myDialog.setContentView(R.layout.activity_login);
+        myDialog.setCancelable(true);
+//        Button login = (Button) myDialog.findViewById(R.id.activity_login);
+//
+//        EditText emailaddr = (EditText) myDialog.findViewById(R.id.activity_login);
+//        EditText passwords = (EditText) myDialog.findViewById(R.id.activity_login);
+        myDialog.show();
+
+
+
+    }
+
+
 
     private boolean checkPassword() {
 
